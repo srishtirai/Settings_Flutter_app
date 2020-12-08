@@ -70,12 +70,7 @@ class _SettingsNavigationState extends State<SettingsNavigation> {
             selectedItem == 0
                 ? setState(() {
                     currentPage = GeneralSettings(
-                      this.callback,
-                      this.dateTime,
-                      this.setDate,
-                      this.setTime,
-                      this.date,
-                      this.time,
+                      this.callback, this.dateTime, this.setDate, this.setTime, this.date, this.time,
                     );
                   })
                 : setState(() {
@@ -100,19 +95,14 @@ class _SettingsNavigationState extends State<SettingsNavigation> {
               unselectedIconTheme:
                   IconThemeData(color: Colors.black87, size: 45),
               labelType: NavigationRailLabelType.all,
-              minWidth: 150,
+              minWidth: 100,
               onDestinationSelected: (int index) {
                 setState(() {
                   selectedItem = index;
                   index == 0
                       ? setState(() {
                           currentPage = GeneralSettings(
-                            this.callback,
-                            this.dateTime,
-                            this.setDate,
-                            this.setTime,
-                            this.date,
-                            this.time,
+                            this.callback, this.dateTime, this.setDate, this.setTime, this.date, this.time,
                           );
                         })
                       : setState(() {

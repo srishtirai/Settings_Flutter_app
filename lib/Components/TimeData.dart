@@ -66,7 +66,10 @@ class _TimeDateState extends State<TimeDate> {
     {
       setState(() {
         isSwitched = true;
+        currentDateTime = new DateTime.now();
+        currentTime = new TimeOfDay.now();
       });
+      getCurrentDateTime();
     }
     else
     {
