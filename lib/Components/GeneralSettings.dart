@@ -8,10 +8,12 @@ class GeneralSettings extends StatefulWidget {
   final String dateTime;
   final Function setDate;
   final Function setTime;
+  final Function setTimeZone;
   final String date;
   final String time;
+  final String timeZone;
 
-  GeneralSettings(this.callback, this.dateTime, this.setDate, this.setTime, this.date, this.time);
+  GeneralSettings(this.callback, this.dateTime, this.setDate, this.setTime, this.setTimeZone, this.date, this.time, this.timeZone);
 
   @override
   _GeneralSettingsState createState() => _GeneralSettingsState();
@@ -54,7 +56,7 @@ class _GeneralSettingsState extends State<GeneralSettings> {
                       break;
                       case 'System Information' : widget.callback(SystemInformation());
                       break;
-                      case 'Time & Date' : widget.callback(TimeDate(widget.setDate, widget.setTime, widget.date, widget.time));
+                      case 'Time & Date' : widget.callback(TimeDate(widget.setDate, widget.setTime,widget.setTimeZone, widget.date, widget.time, widget.timeZone));
                       break;
                     }
                   },

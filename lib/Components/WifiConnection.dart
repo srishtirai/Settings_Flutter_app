@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class WifiConnection extends StatelessWidget {
-
   final header = 'Wi-Fi CONNECTION';
   final List<String> _title = ['Add a hidden wireless network','Connect via WPS PBC', 'Connect via WPS PIN','Advanced Wi-fi Settings'];
 

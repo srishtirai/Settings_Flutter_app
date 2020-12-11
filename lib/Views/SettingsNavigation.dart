@@ -16,7 +16,7 @@ class _SettingsNavigationState extends State<SettingsNavigation> {
   int selectedItem = 0;
   GeneralSettings generalSettings;
   Widget currentPage;
-  String deviceName, date, time, dateTime;
+  String deviceName, date, time, dateTime, timeZone;
 
   void initState() {
     super.initState();
@@ -24,8 +24,9 @@ class _SettingsNavigationState extends State<SettingsNavigation> {
     dateTime = DateFormat('kk:mm:ss EEE d MMM').format(now);
     date = '';
     time = '';
+    timeZone = '';
     generalSettings = GeneralSettings(this.callback, this.dateTime,
-        this.setDate, this.setTime, this.date, this.time);
+        this.setDate, this.setTime, this.setTimeZone, this.date, this.time, this.timeZone);
     currentPage = generalSettings;
     deviceName = 'webOS Open Source Edition';
   }
@@ -44,6 +45,12 @@ class _SettingsNavigationState extends State<SettingsNavigation> {
     });
   }
 
+  void setTimeZone(String data) {
+    setState(() {
+      this.timeZone = data;
+    });
+  }
+
   void setDeviceName(String name) {
     setState(() {
       this.deviceName = name;
@@ -55,6 +62,7 @@ class _SettingsNavigationState extends State<SettingsNavigation> {
       this.currentPage = nextPage;
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +78,7 @@ class _SettingsNavigationState extends State<SettingsNavigation> {
             selectedItem == 0
                 ? setState(() {
                     currentPage = GeneralSettings(
-                      this.callback, this.dateTime, this.setDate, this.setTime, this.date, this.time,
+                      this.callback, this.dateTime, this.setDate, this.setTime, this.setTimeZone, this.date, this.time, this.timeZone
                     );
                   })
                 : setState(() {
@@ -102,7 +110,7 @@ class _SettingsNavigationState extends State<SettingsNavigation> {
                   index == 0
                       ? setState(() {
                           currentPage = GeneralSettings(
-                            this.callback, this.dateTime, this.setDate, this.setTime, this.date, this.time,
+                            this.callback, this.dateTime, this.setDate, this.setTime, this.setTimeZone, this.date, this.time, this.timeZone
                           );
                         })
                       : setState(() {
