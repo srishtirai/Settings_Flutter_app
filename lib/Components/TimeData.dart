@@ -27,6 +27,7 @@ class _TimeDateState extends State<TimeDate> {
   bool isSwitched = false;
   bool userTimeDate = false;
   bool setCurrentTime = false;
+  bool setZone = false;
   List<TimeZoneData> timeZones = List();
   Future zoneData;
   String userTimeZone;
@@ -61,10 +62,11 @@ class _TimeDateState extends State<TimeDate> {
   }
 
   void getInitialTimeDate() {
-    if(setCurrentTime == true || userTimeDate == true || widget.time == '') {
+    if(setCurrentTime == true || userTimeDate == true || widget.time == '' || setZone == true) {
       setState(() {
         userTimeDate = false;
         setCurrentTime = false;
+        setZone = false;
       });
       onChangeTimeOrDate();
     }
@@ -126,33 +128,26 @@ class _TimeDateState extends State<TimeDate> {
   void toggleSwitch(bool value) {
     if(isSwitched == false)
     {
+      var dateParse = DateTime.parse(currentDateTime.toString());
       setState(() {
         isSwitched = true;
-        setCurrentTime = true;
-        userTime = false;
+        userTimeZone = "${dateParse.timeZoneName}" ;
       });
     }
     else
     {
       setState(() {
         isSwitched = false;
-        setCurrentTime = true;
-        userTime = false;
       });
     }
-    currentDateTime = new DateTime.now();
-    currentTime = new TimeOfDay.now();
-    onChangeTimeOrDate();
     setState(() {
+      currentDateTime = new DateTime.now();
+      currentTime = new TimeOfDay.now();
+      onChangeTimeOrDate();
+      setCurrentTime = true;
+      userTime = false;
       widget.setTime(dateTimeData['time']);
       widget.setDate(dateTimeData['date']);
-    });
-  }
-
-  void setTimeZone(val){
-    setState(() {
-      dateTimeData['time_zone'] = val;
-      userTimeZone = val;
     });
   }
 
@@ -261,6 +256,7 @@ class _TimeDateState extends State<TimeDate> {
                                   }).toList(),
                                   onChanged: (newVal) {
                                     setState(() {
+                                      setZone = true;
                                       userTimeZone = newVal;
                                       widget.setTimeZone(newVal);
                                     });
